@@ -4,8 +4,8 @@ class Sort(ABC):
     '''
     Parent sorting class. All sorting subclasses are to inherit this class and give their own definitions for the sort method.
     Args -
-            time: The time complexity at which the sorting algorithm runs at.
-            space: The space complexity at which the sorting algorithm runs at.
+            time (String): The time complexity at which the sorting algorithm runs at.
+            space (String): The space complexity at which the sorting algorithm runs at.
     '''
     def __init__(self, bestTime, avgTime, worstTime, space) -> None:
         assert isinstance(bestTime , str) and \
