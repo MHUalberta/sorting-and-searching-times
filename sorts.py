@@ -139,4 +139,4 @@ bubbleSort = BubbleSort("n", "n^2", "n^2", "1")
 heapSort = HeapSort("nlogn", "nlogn", "nlogn", "n")
 insertionSort = InsertionSort("n", "n^2", "n^2", "1")
 shellSort = ShellSort("n", "[nlogn]^2", "[nlogn]^2", "1")
-allSorts = [quickSort, heapSort, insertionSort, shellSort]
+allSorts = [quickSort, bubbleSort, heapSort, insertionSort, shellSort]
