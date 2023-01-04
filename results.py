@@ -1,10 +1,9 @@
 import random, time, sorts
 from threading import Thread, Semaphore
 
-#Setup
+#Configuration
 N = 1000           #Base number of elements in arrays to be sorted
 numIterations = 5   #Number of arrays to be generated and averaged over
-allStats = {}       #Global variable that stores stats for all algorithms
 threading = False
 if threading:
     printSem = Semaphore()
@@ -148,8 +147,9 @@ def printFullSummary(runtime):
         elapsed = stats[0]
         totalElapsed += elapsed
     print(f"\tTotal average elapsed time sorting: {totalElapsed}")
+    
 
-
+allStats = {}       #Global variable that stores stats for all algorithms
 def main():
     arrs, arrsSorted = generateArrs()
 
