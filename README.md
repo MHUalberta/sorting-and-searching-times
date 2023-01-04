@@ -3,11 +3,11 @@ This project was solely made for the purpose of studying runtimes of different a
 The algorithms used in this project are well known and commonly used algorithms for searching and sorting, and the implementations I used are the ones on geeksforgeeks.org
 
 
-FOR SORTING ALGORITHMS:
-    To get started, configure the following in "results.py":
-        -N: Number of randomly generated integers to sort.
-        -numIteration: Number of randomly generated arrays to be sorted, tested, and averaged over.
-        -threading: Disable/Enable threading. If enabled, each algorithm will generate and perform its task on a new thread.
+FOR SORTING ALGORITHMS:\
+    &emsp;&emsp;To get started, configure the following in "results.py":\
+        &emsp;&emsp;&emsp;-N: Number of randomly generated integers to sort.\
+        &emsp;&emsp;&emsp;-numIteration: Number of randomly generated arrays to be sorted, tested, and averaged over.\
+        &emsp;&emsp;&emsp;-threading: Disable/Enable threading. If enabled, each algorithm will generate and perform its task on a new thread.\
 
-FOR SEARCHING ALGORITHMS:
-    NOT IMPLEMENTED
+FOR SEARCHING ALGORITHMS:\
+    &emsp;&emsp;NOT IMPLEMENTED
