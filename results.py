@@ -1,10 +1,11 @@
 import random, time, sorts
 from threading import Thread, Semaphore
 
-# Setup
+#Setup
 N = 1000           #Base number of elements in arrays to be sorted
 numIterations = 5   #Number of arrays to be generated and averaged over
-threading = True
+allStats = {}       #Global variable that stores stats for all algorithms
+threading = False
 if threading:
     printSem = Semaphore()
 
@@ -20,7 +21,7 @@ def bold(text):
     return '\033[1m' + text + '\033[0m'
 
 
-def printSortSummary(sortClass, elapsedTimes, isCorrect):
+def printSortSummary(sortClass, elapsedTime, isCorrect):
     '''
     Print summary stats for a sort.
     Args -
@@ -38,8 +39,7 @@ def printSortSummary(sortClass, elapsedTimes, isCorrect):
     print(f"\tWorst time complexity:   {sortClass.getWorstTime()}")
     print(f"\tWorst space complexity:  {sortClass.getSpace()}")
     if isCorrect:
-        avgElapseds = sum(elapsedTimes)/len(elapsedTimes)
-        print(f"\tAverage elapsed time for sorting {N} randomly generated numbers is {avgElapseds}\n")
+        print(f"\tAverage elapsed time for sorting {N} randomly generated numbers is {elapsedTime}\n")
     else:
         print(f"\tERROR: The provided implementation for {sortClass.getName()} has returned an incorrect output!\n")
     ############################################
@@ -76,7 +76,11 @@ def testSort(sortClass, arrs, arrsSorted):
             isCorrect = False
             break
     
-    printSortSummary(sortClass, elapseds, isCorrect)
+    avgElapsed = sum(elapseds)/len(elapseds)
+
+    allStats[sortClass.getName()] = (avgElapsed, isCorrect)
+
+    printSortSummary(sortClass, avgElapsed, isCorrect)
 
 
 def generateArrs():
@@ -128,14 +132,37 @@ def startTestingWThreading(arrs, arrsSorted):
         thread.join()
 
 
+def printFullSummary(runtime):
+    '''
+    Print summary stats of all sorting algorithms.
+    Args -
+            runtime (Float): The total time taken since the first algorithm started till the last one ended.
+    '''
+    print("\n" + "-"*100)
+    print(bold("Summary stats -"))
+    
+    print(f"\tRuntime (Time taken since first algorithm started till last one ended): {runtime}")
+
+    totalElapsed = 0
+    for stats in allStats.values():
+        elapsed = stats[0]
+        totalElapsed += elapsed
+    print(f"\tTotal average elapsed time sorting: {totalElapsed}")
+
+
 def main():
     arrs, arrsSorted = generateArrs()
 
+    start = time.time()
     if threading:
         startTestingWThreading(arrs, arrsSorted)
     else:
         startTestingWOThreading(arrs, arrsSorted)
-    
+    end = time.time()
+
+    runtime = end - start
+
+    printFullSummary(runtime)
           
 if __name__ == "__main__":
     main()
